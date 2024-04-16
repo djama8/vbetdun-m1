@@ -47,10 +47,10 @@ class Request extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'description' => 'Description',
-            'type' => 'Type',
-            'id_status' => 'Id Status',
-            'id_user' => 'Id User',
+            'description' => 'Описание',
+            'type' => 'Тип техники',
+            'id_status' => 'Статус',
+            'id_user' => 'Пользовтель',
         ];
     }
 

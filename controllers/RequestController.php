@@ -7,6 +7,7 @@ use app\models\RequestSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use Yii;
 
 /**
  * RequestController implements the CRUD actions for Request model.
@@ -70,9 +71,17 @@ class RequestController extends Controller
         $model = new Request();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post())){
+
+                $model->id_user = Yii::$app->user->identity->id;
+            $model->id_status = 1;
+            
+            
+            
+            if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
+        } 
         } else {
             $model->loadDefaultValues();
         }

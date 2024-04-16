@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var app\models\RequestSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Requests';
+$this->title = 'Заявления';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="request-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Request', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Сформировать заявление', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -32,8 +32,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'description',
             'type',
-            'id_status',
-            'id_user',
+            [
+                'attribute' => 'id_status',
+                'value' => function($model){
+                    return $model->status->status;
+                }
+            ],
+            [
+                'attribute' => 'id_user',
+                'value' => function($model){
+                    return $model->user->fio;
+                }
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Request $model, $key, $index, $column) {

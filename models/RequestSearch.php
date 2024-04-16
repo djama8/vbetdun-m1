@@ -5,6 +5,7 @@ namespace app\models;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Request;
+use Yii;
 
 /**
  * RequestSearch represents the model behind the search form of `app\models\Request`.
@@ -42,7 +43,9 @@ class RequestSearch extends Request
     {
         $query = Request::find();
 
-        // add conditions that should always apply here
+        if(Yii::$app->user->identity->username!='copp'){
+            $query->andWhere(['id_user'=>Yii::$app->user->identity->id]);
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

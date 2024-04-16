@@ -16,9 +16,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'id_status')->textInput() ?>
-
-    <?= $form->field($model, 'id_user')->textInput() ?>
+    <?php if(Yii::$app->user->identity->username='copp')
+    echo $form->field($model, 'id_status')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Status::find()->all(),'id','status')) ?>
+    
+    <!-- <?= $form->field($model, 'id_user')->textInput() ?>  -->
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
