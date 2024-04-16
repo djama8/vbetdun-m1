@@ -31,10 +31,11 @@ AppAsset::register($this);
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
+            'class' => 'navbar navbar-expand-md navbar-dark bg-success fixed-top',
         ],
     ]);
 
+    //Навигация
 
     $items = [];
     if(Yii::$app->user->isGuest ){
@@ -42,7 +43,7 @@ AppAsset::register($this);
         $items [] = ['label' => 'Авторизация', 'url' => ['/site/login']];
     }
     else{
-        if(Yii::$app->user->identity->username =='copp'){
+        if(Yii::$app->user->identity->username =='admin'){
             $items [] = ['label' => 'Администрантивная панель', 'url' => ['/request/index']];
         }
         else{

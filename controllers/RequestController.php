@@ -79,7 +79,7 @@ class RequestController extends Controller
             
             
             if ($model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['request/index']);
             }
         } 
         } else {

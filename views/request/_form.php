@@ -16,13 +16,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
 
-    <?php if(Yii::$app->user->identity->username=='copp')
+    <!-- Если пользователь админ, он может выбрать статус -->
+    <?php if(Yii::$app->user->identity->username=='admin')
     echo $form->field($model, 'id_status')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Status::find()->all(),'id','status')) ?>
     
     <!-- <?= $form->field($model, 'id_user')->textInput() ?>  -->
 
     <div class="form-group">
-        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-outline-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

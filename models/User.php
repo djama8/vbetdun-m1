@@ -35,7 +35,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             [['fio', 'phone', 'email', 'username', 'password'], 'required'],
             [['phone'], 'integer'],
             [['fio', 'email', 'username', 'password'], 'string', 'max' => 255],
-            [['password'], 'string', 'min' => 6],
+            [['password'], 'string', 'min' => 6, 'message'=> "Минимум 6 символов"],
         ];
     }
 
@@ -64,6 +64,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return $this->hasMany(Request::class, ['id_user' => 'id']);
     }
 
+
+    //Реализация регистрации
 
     /**
      * {@inheritdoc}

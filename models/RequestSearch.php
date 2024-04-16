@@ -43,7 +43,8 @@ class RequestSearch extends Request
     {
         $query = Request::find();
 
-        if(Yii::$app->user->identity->username!='copp'){
+        //Если пользователь не админ он может видеть только свои записи
+        if(Yii::$app->user->identity->username!='admin'){
             $query->andWhere(['id_user'=>Yii::$app->user->identity->id]);
         }
 
