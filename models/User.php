@@ -35,7 +35,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             [['fio', 'phone', 'email', 'username', 'password'], 'required'],
             [['phone'], 'integer'],
             [['fio', 'email', 'username', 'password'], 'string', 'max' => 255],
-            [['password'], 'string', 'min' => 6, 'message'=> "Минимум 6 символов"],
+            ['email', 'email','message' =>"Адрес электронной почты"],
+            [['password'], 'string', 'min' => 6, 'tooShort'=> "Минимум 6 символов"],
         ];
     }
 
